@@ -47,7 +47,6 @@ const App = () => {
       const response = await permitService.create(request);
       if (response.success) {
         setCreatedPermitId(response.data.citizenid);
-        console.log(response.data.id)
         setPermitNumId(response.data.id);
       }
       setMessage("Permit created successfully");
@@ -90,7 +89,6 @@ const App = () => {
 
   // ---------------- UPDATE STATUS ----------------
   const handleUpdateStatus = async () => {
-    console.log(permitNumId)
     if (!permitNumId) return;
 
     setLoading(true);
@@ -106,7 +104,7 @@ const App = () => {
           setPermit({ ...permit, status: response.data.permitstatus });
           setMessage("Status updated successfully");
         }
-      }
+      } 
     } catch {
       setMessage("Failed to update status");
     } finally {

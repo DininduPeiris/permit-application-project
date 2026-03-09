@@ -14,9 +14,14 @@ class PermitService {
   }
 
   async updatePermitStatus(id: number, request: PermitStatusChangeRequestDto) {
-    return await apiService.apiPUT<PermitApplicationResponseDto>(
-      "/permit",
-      id,
+    // return await apiService.apiPUT<PermitApplicationResponseDto>(
+    //   "/permit",
+    //   id,
+    //   request,
+    // );
+
+    return await apiService.apiPATCH<PermitApplicationResponseDto>(
+      `/permit/${id}/status`,
       request,
     );
   }

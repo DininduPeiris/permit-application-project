@@ -61,6 +61,18 @@ class ApiService {
     }
   }
 
+  async apiPATCH<TResponse, TBody = unknown>(
+    path: string,
+    body: TBody,
+  ): Promise<ApiResponse<TResponse>> {
+    try {
+      const response = await this.http.patch(`${path}`, body);
+      return responseHandling<TResponse>(response);
+    } catch (error) {
+      return errorHandling(error as AxiosError);
+    }
+  }
+
   async apiGET<T>(path: string): Promise<ApiResponse<T>> {
     try {
       const response = await this.http.get(path);
